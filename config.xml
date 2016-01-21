@@ -25,19 +25,19 @@
     <preference name="android-installLocation" value="auto" />
 
     <icon src="icon.png" />
+
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/android-icon-36x36.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/android-icon-48x48.png" />
     <icon gap:platform="android" gap:qualifier="hdpi" src="www/res/icon/android/android-icon-72x72.png" />
     <icon gap:platform="android" gap:qualifier="xhdpi" src="www/res/icon/android/android-icon-96x96.png" />
-    <icon gap:platform="blackberry" src="www/res/icon/blackberry/icon-80.png" />
-    <icon gap:platform="blackberry" gap:state="hover" src="www/res/icon/blackberry/icon-80.png" />
+
+
     <icon gap:platform="ios" height="57" src="www/res/icon/ios/icon-57.png" width="57" />
     <icon gap:platform="ios" height="72" src="www/res/icon/ios/icon-72.png" width="72" />
     <icon gap:platform="ios" height="114" src="www/res/icon/ios/icon-57-2x.png" width="114" />
     <icon gap:platform="ios" height="144" src="www/res/icon/ios/icon-72-2x.png" width="144" />
-    <icon gap:platform="webos" src="www/res/icon/webos/icon-64.png" />
-    <icon gap:platform="winphone" src="www/res/icon/windows-phone/icon-48.png" />
-    <icon gap:platform="winphone" gap:role="background" src="www/res/icon/windows-phone/icon-173-tile.png" />
+
+
     <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="www/res/screen/android/screen-mobile.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="www/res/screen/android/screen-mobile.png" />
     <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="www/res/screen/android/screen-mobile.png" />
@@ -48,7 +48,7 @@
     <gap:splash gap:platform="ios" height="1136" src="www/res/screen/ios/screen-mobile.png" width="640" />
     <gap:splash gap:platform="ios" height="1024" src="www/res/screen/ios/screen-mobile.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-mobile.png" width="1024" />
-    <gap:splash gap:platform="winphone" src="www/res/screen/windows-phone/screen-portrait.jpg" />
+
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />
