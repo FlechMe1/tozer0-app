@@ -8,6 +8,9 @@
         Paul Gruson
     </author>
     <content src="index.html" />
+
+    <gap:plugin name="cordova-plugin-admobpro" source="npm" />
+
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
@@ -50,18 +53,5 @@
     <gap:splash gap:platform="ios" height="768" src="www/res/screen/ios/screen-mobile.png" width="1024" />
 
     <access origin="*" />
-    <plugin name="cordova-plugin-whitelist" version="1" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
-    <platform name="android">
-        <allow-intent href="market:*" />
-    </platform>
-    <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
-    </platform>
+
 </widget>
