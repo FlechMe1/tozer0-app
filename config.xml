@@ -9,8 +9,6 @@
     </author>
     <content src="index.html" />
 
-    <gap:plugin name="cordova-plugin-admobpro" source="npm" />
-
     <preference name="permissions" value="none" />
     <preference name="orientation" value="portrait" />
     <preference name="target-device" value="universal" />
