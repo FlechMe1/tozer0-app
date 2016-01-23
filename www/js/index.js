@@ -17,36 +17,57 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+  // Application Constructor
+  initialize: function() {
+    this.bindEvents();
+  },
+  // Bind Event Listeners
+  //
+  // Bind any events that are required on startup. Common events are:
+  // 'load', 'deviceready', 'offline', and 'online'.
+  bindEvents: function() {
+    document.addEventListener('deviceready', this.onDeviceReady, false);
+  },
+  // deviceready Event Handler
+  //
+  // The scope of 'this' is the event. In order to call the 'receivedEvent'
+  // function, we must explicitly call 'app.receivedEvent(...);'
+  onDeviceReady: function() {
+    app.receivedEvent('deviceready');
+  },
+  // Update DOM on a Received Event
+  receivedEvent: function(id) {
+    var parentElement = document.getElementById(id);
+    var listeningElement = parentElement.querySelector('.listening');
+    var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    listeningElement.setAttribute('style', 'display:none;');
+    receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
-    }
+    console.log('Received Event: ' + id);
+  }
 };
+
+var enabledAdMob = true; // easily enable/disable AdMob
+var admobid = {};
+
+admobid = { // for Android
+  banner: 'ca-app-pub-6973096842645745/4401535872', // or DFP format "/6253334/dfp_example_ad"
+  interstitial: 'ca-app-pub-6973096842645745/1316971878'
+}
+
+
+function initApp() {
+  if (enabledAdMob) {
+    AdMob.createBanner({
+      adId: admobid.banner,
+      position: AdMob.AD_POSITION.BOTTOM_CENTER,
+      autoShow: true
+    });
+  }
+}
+
+document.addEventListener('deviceready', initApp, false);
 
 
 R = Math.random;
@@ -56,18 +77,24 @@ var score = 0;
 
 var r = [];
 
-A = function(x,c){return(c||d).querySelector(x)}
-B = function(x,c){return[].slice.call((c||d).querySelectorAll(x))}
-C = function C(x,y){return A('.tile.x'+x+'.y'+(y<0?'h':y))}
+A = function(x, c) {
+  return (c || d).querySelector(x)
+}
+B = function(x, c) {
+  return [].slice.call((c || d).querySelectorAll(x))
+}
+C = function C(x, y) {
+  return A('.tile.x' + x + '.y' + (y < 0 ? 'h' : y))
+}
 
 $(window).ready(function() {
   width = $('#game').width();
   $('#game').height(width);
 
   var best_score = sessionStorage.getItem("best_score");
-  if(best_score){
-    min = Math.floor(best_score/60);
-    sec = best_score%60;
+  if (best_score) {
+    min = Math.floor(best_score / 60);
+    sec = best_score % 60;
     prnt = ("0" + min).slice(-2) + ":" + ("0" + sec).slice(-2);
     $('.old-score .last').html(prnt);
   }
@@ -109,7 +136,7 @@ function getY(c) {
   return parseInt(result);
 }
 
-function getAdjacentTiles(t, t0, value, r){
+function getAdjacentTiles(t, t0, value, r) {
   //return un tableau
   var v = parseInt(t.html());
   var x = parseInt(t.data('x'));
@@ -120,18 +147,23 @@ function getAdjacentTiles(t, t0, value, r){
   var s0 = get_selector(x0, y0);
   var s = get_selector(x, y);
 
-  tableau = [[0,1],[0,-1],[1,0],[-1,0]];
+  tableau = [
+    [0, 1],
+    [0, -1],
+    [1, 0],
+    [-1, 0]
+  ];
 
-  var s1 = get_selector(x, y+1);
-  var s2 = get_selector(x, y-1);
-  var s3 = get_selector(x-1, y);
-  var s4 = get_selector(x+1, y);
+  var s1 = get_selector(x, y + 1);
+  var s2 = get_selector(x, y - 1);
+  var s3 = get_selector(x - 1, y);
+  var s4 = get_selector(x + 1, y);
   var t1 = $(s1);
   var t2 = $(s2);
   var t3 = $(s3);
   var t4 = $(s4);
-  if (value==v && !t.hasClass('sel')) {
-    if(s != s0){
+  if (value == v && !t.hasClass('sel')) {
+    if (s != s0) {
       t.addClass('sel');
       r.push(t);
     }
@@ -139,7 +171,7 @@ function getAdjacentTiles(t, t0, value, r){
     getAdjacentTiles(t2, t0, value, r);
     getAdjacentTiles(t3, t0, value, r);
     getAdjacentTiles(t4, t0, value, r);
-  }else{
+  } else {
     return r;
   }
   return r;
@@ -158,20 +190,20 @@ function interAction(t, a, b, m) {
   a = getAdjacentTiles(t, t, m, r); //t, t0, value, r
 
 
-  if(m==1 && r.length>0){
+  if (m == 1 && r.length > 0) {
     clearTimeout(compte);
     score = $('.score .actual').html();
     $('.game-over').addClass('active');
 
     var best_score = sessionStorage.getItem("best_score");
-    var current_score = minu*60+secon;
-    if(!best_score || best_score>current_score){
-      sessionStorage.setItem("best_score",current_score);
+    var current_score = minu * 60 + secon;
+    if (!best_score || best_score > current_score) {
+      sessionStorage.setItem("best_score", current_score);
 
       $('.old-score .last').html(("0" + minu).slice(-2) + ":" + ("0" + secon).slice(-2));
     }
   }
-  if (m > 0 && r.length>0) {
+  if (m > 0 && r.length > 0) {
     t.html(m - 1);
     t.css("background-color", get_bg_color(parseInt(t.html())))
       .css("color", get_color(parseInt(t.html())));
@@ -192,45 +224,45 @@ function removeTile(t) {
 }
 
 function removeTiles(a) {
-  if(a.length>0){
+  if (a.length > 0) {
     b = a.pop();
     removeTile(b);
     removeTiles(a);
   }
 }
 
-function fall(r,f,x,y,t) {
-  for (y=5;y>=-1;y--) {
-    for (x=7;x--;) {
+function fall(r, f, x, y, t) {
+  for (y = 5; y >= -1; y--) {
+    for (x = 7; x--;) {
 
       selector = get_selector(x, y);
-      selector_plusone = get_selector(x, y+1);
+      selector_plusone = get_selector(x, y + 1);
 
       var elem_plusone = $(selector_plusone); // EN DESSOUS
 
-      if((elem = $(selector))&&!elem_plusone.length){
-        changePos(x, y+1, elem);
+      if ((elem = $(selector)) && !elem_plusone.length) {
+        changePos(x, y + 1, elem);
         f++
       }
     }
   }
-  if (f > 0){
+  if (f > 0) {
     return setTimeout(function() {
       fall(r)
     }, 25);
   }
 
-  if (r>0) {
-    for (x=7;x--;) {
+  if (r > 0) {
+    for (x = 7; x--;) {
       var selector = get_selector(x, 0);
       var olem = $(selector);
 
-      if(!olem.length && R()<.8) {
+      if (!olem.length && R() < .8) {
         value = 7 + (R() * 3) | 0;
         tile(x, -1, value);
       }
       setTimeout(function() {
-        fall(r-1)
+        fall(r - 1)
       }, 50);
     }
 
@@ -254,7 +286,7 @@ function init_game() {
   clearTimeout(compte);
   compte = null;
   $('.game-over').removeClass('active');
-  prec_score = centi+(secon*1000)+(minu*60000);
+  prec_score = centi + (secon * 1000) + (minu * 60000);
   centi = secon = minu = clic = 0;
   is_start = false;
   $('#game').html('');
@@ -263,13 +295,13 @@ function init_game() {
       tile(i, j, 7 + (R() * 3) | 0);
     }
   }
-  $('.chrono').html("00:00");
-  $('#game').click(function(event){
-    if($(event.target).hasClass('tile')){
+  $('.actual').html("00:00");
+  $('#game').click(function(event) {
+    if ($(event.target).hasClass('tile')) {
       clic++;
       interAction($(event.target));
-      if(!is_start){
-        is_start=true;
+      if (!is_start) {
+        is_start = true;
         chrono();
       }
     }
@@ -357,8 +389,8 @@ function chrono() {
     secon = 0;
     minu++;
   }
-  time = minu*60 + secon;
-  s = (time*clic);
+  time = minu * 60 + secon;
+  s = (time * clic);
 
   $('.score .actual').html(("0" + minu).slice(-2) + ":" + ("0" + secon).slice(-2));
   compte = setTimeout('chrono()', 100);
