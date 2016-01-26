@@ -1,74 +1,49 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-  // Application Constructor
-  initialize: function() {
-    this.bindEvents();
-  },
-  // Bind Event Listeners
-  //
-  // Bind any events that are required on startup. Common events are:
-  // 'load', 'deviceready', 'offline', and 'online'.
-  bindEvents: function() {
-    document.addEventListener('deviceready', this.onDeviceReady, false);
-  },
-  // deviceready Event Handler
-  //
-  // The scope of 'this' is the event. In order to call the 'receivedEvent'
-  // function, we must explicitly call 'app.receivedEvent(...);'
-  onDeviceReady: function() {
-    app.receivedEvent('deviceready');
-    miAdmob ();
-  },
-  // Update DOM on a Received Event
-  receivedEvent: function(id) {
-    var parentElement = document.getElementById(id);
-    var listeningElement = parentElement.querySelector('.listening');
-    var receivedElement = parentElement.querySelector('.received');
-
-    listeningElement.setAttribute('style', 'display:none;');
-    receivedElement.setAttribute('style', 'display:block;');
-
-    console.log('Received Event: ' + id);
-  }
+var admobid = {};
+admobid = { // for Android
+  banner: 'ca-app-pub-6869992474017983/9375997553',
+  interstitial: 'ca-app-pub-6869992474017983/1657046752'
 };
 
-var enabledAdMob = true; // easily enable/disable AdMob
-var admobid = {};
-
-admobid = { // for Android
-  banner: 'ca-app-pub-6973096842645745/4401535872', // or DFP format "/6253334/dfp_example_ad"
-  interstitial: 'ca-app-pub-6973096842645745/1316971878'
-}
-
-
 function initApp() {
-  if (enabledAdMob) {
+  if (! AdMob ) { alert( 'admob plugin not ready' ); return; }
+
+  if (AdMob) {
     AdMob.createBanner({
-      adId: admobid.banner,
-      position: AdMob.AD_POSITION.BOTTOM_CENTER,
-      autoShow: true
+      adId : admobid.banner,
+      position : AdMob.AD_POSITION.BOTTOM_CENTER,
+      autoShow : true
     });
   }
 }
 
-document.addEventListener('deviceready', initApp, false);
+
+var app = {
+    // Application Constructor
+    initialize: function() {
+      this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+      this.onDeviceReady();
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+
+      init_game();
+      initApp();
+      app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+
+    }
+};
 
 
 R = Math.random;
@@ -91,6 +66,7 @@ C = function C(x, y) {
 $(window).ready(function() {
   width = $('#game').width();
   $('#game').height(width);
+
 
   var best_score = sessionStorage.getItem("best_score");
   if (best_score) {
@@ -250,7 +226,7 @@ function fall(r, f, x, y, t) {
   if (f > 0) {
     return setTimeout(function() {
       fall(r)
-    }, 25);
+    }, 10);
   }
 
   if (r > 0) {
@@ -279,11 +255,11 @@ var minu = 0;
 var clic = 0;
 var compte = null;
 var prec_score = 0;
-init_game();
 
-is_start = false;
+var is_start = false;
 
 function init_game() {
+  is_start = false;
   clearTimeout(compte);
   compte = null;
   $('.game-over').removeClass('active');

@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
-  <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.gstatic.com ; script-src 'self' 'unsafe-eval' 'unsafe-inline'; connect-src 'self' *; img-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ;">
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
@@ -49,9 +50,12 @@
   </div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/admob.js"></script>
+  <script src="js/jquery.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript">
+      app.initialize();
+  </script>
 </body>
 
 </html>
