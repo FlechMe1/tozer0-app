@@ -5,7 +5,8 @@ admobid = { // for Android
 };
 
 function initApp() {
-  console.log(admob);
+  if (! AdMob ) { alert( 'admob plugin not ready' ); return; }
+
   if (AdMob) {
     AdMob.createBanner({
       adId : admobid.banner,
@@ -36,7 +37,6 @@ var app = {
 
       init_game();
       initApp();
-      is_start = false;
       app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
@@ -256,8 +256,10 @@ var clic = 0;
 var compte = null;
 var prec_score = 0;
 
-function init_game() {
+var is_start = false;
 
+function init_game() {
+  is_start = false;
   clearTimeout(compte);
   compte = null;
   $('.game-over').removeClass('active');
