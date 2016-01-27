@@ -5,15 +5,16 @@ admobid = { // for Android
 };
 
 function initApp() {
-  if (! AdMob ) { alert( 'admob plugin not ready' ); return; }
+  // AdMob.prepareInterstitial({
+  //   adId:'ca-app-pub-xxx/9375997553',
+  //   autoShow:true
+  // });
 
-  if (AdMob) {
-    AdMob.createBanner({
-      adId : admobid.banner,
-      position : AdMob.AD_POSITION.BOTTOM_CENTER,
-      autoShow : true
-    });
-  }
+  AdMob.createBanner({
+    adId:'ca-app-pub-6973096842645745/4401535872',
+    position:AdMob.AD_POSITION.BOTTOM_CENTER,
+    autoShow:true
+  });
 }
 
 

@@ -9,27 +9,12 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-admob/www/admob.js",
-        "id": "cordova-admob.AdMobAds",
-        "pluginId": "cordova-admob",
-        "clobbers": [
-            "window.admob",
-            "window.tappx"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-admobpro/www/AdMob.js",
         "id": "cordova-plugin-admobpro.AdMob",
         "pluginId": "cordova-plugin-admobpro",
         "clobbers": [
             "window.AdMob"
         ]
-    },
-    {
-        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
-        "id": "cordova-plugin-whitelist.whitelist",
-        "pluginId": "cordova-plugin-whitelist",
-        "runs": true
     },
     {
         "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
@@ -197,6 +182,12 @@ module.exports = [
             "cordova"
         ],
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+        "id": "cordova-plugin-whitelist.whitelist",
+        "pluginId": "cordova-plugin-whitelist",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -204,11 +195,10 @@ module.exports.metadata =
 {
     "cordova-connectivity-monitor": "1.2.2",
     "cordova-google-play-services": "25.0.0",
-    "cordova-admob": "4.1.6",
     "cordova-plugin-extension": "1.2.9",
     "cordova-plugin-admobpro": "2.11.1",
-    "cordova-plugin-whitelist": "1.2.1",
-    "cordova-plugin-file": "4.1.0"
+    "cordova-plugin-file": "4.1.0",
+    "cordova-plugin-whitelist": "1.2.1"
 }
 // BOTTOM OF METADATA
 });
