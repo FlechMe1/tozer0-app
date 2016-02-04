@@ -1,23 +1,3 @@
-var admobid = {};
-admobid = { // for Android
-  banner: 'ca-app-pub-6869992474017983/9375997553',
-  interstitial: 'ca-app-pub-6869992474017983/1657046752'
-};
-
-function initApp() {
-  // AdMob.prepareInterstitial({
-  //   adId:'ca-app-pub-xxx/9375997553',
-  //   autoShow:true
-  // });
-
-  AdMob.createBanner({
-    adId:'ca-app-pub-6973096842645745/4401535872',
-    position:AdMob.AD_POSITION.BOTTOM_CENTER,
-    autoShow:true
-  });
-}
-
-
 var app = {
     // Application Constructor
     initialize: function() {
@@ -35,9 +15,8 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-
       init_game();
-      initApp();
+
       app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
@@ -45,6 +24,15 @@ var app = {
 
     }
 };
+
+function initApp() {
+  AdMob.createBanner({
+    adId: 'ca-app-pub-6973096842645745/4401535872',
+    position: AdMob.AD_POSITION.BOTTOM_CENTER,
+    autoShow: true
+  });
+}
+document.addEventListener('deviceready', initApp, false);
 
 
 R = Math.random;
@@ -69,7 +57,7 @@ $(window).ready(function() {
   $('#game').height(width);
 
 
-  var best_score = sessionStorage.getItem("best_score");
+  var best_score = localStorage['best_score'];
   if (best_score) {
     min = Math.floor(best_score / 60);
     sec = best_score % 60;
@@ -172,11 +160,11 @@ function interAction(t, a, b, m) {
     clearTimeout(compte);
     score = $('.score .actual').html();
     $('.game-over').addClass('active');
-
-    var best_score = sessionStorage.getItem("best_score");
+    adbuddiz.showAd();
+    var best_score = localStorage['best_score'];
     var current_score = minu * 60 + secon;
     if (!best_score || best_score > current_score) {
-      sessionStorage.setItem("best_score", current_score);
+      localStorage['best_score'] = current_score;
 
       $('.old-score .last').html(("0" + minu).slice(-2) + ":" + ("0" + secon).slice(-2));
     }
