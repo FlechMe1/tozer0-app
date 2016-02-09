@@ -1,4 +1,6 @@
 var app = {
+    // Google Play ID : 596840834279
+
     // Application Constructor
     initialize: function() {
       this.bindEvents();
@@ -30,6 +32,10 @@ function initApp() {
     adId: 'ca-app-pub-6973096842645745/4401535872',
     position: AdMob.AD_POSITION.BOTTOM_CENTER,
     autoShow: true
+  });
+  AdMob.prepareInterstitial({
+    adId:"ca-app-pub-6973096842645745/1316971878",
+    autoShow:false
   });
 }
 document.addEventListener('deviceready', initApp, false);
@@ -160,7 +166,7 @@ function interAction(t, a, b, m) {
     clearTimeout(compte);
     score = $('.score .actual').html();
     $('.game-over').addClass('active');
-    adbuddiz.showAd();
+    AdMob.showInterstitial()
     var best_score = localStorage['best_score'];
     var current_score = minu * 60 + secon;
     if (!best_score || best_score > current_score) {

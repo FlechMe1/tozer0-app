@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/paul/Documents/Projets/tozer0-app/platforms/android/cordova-plugin-extras-google-play-services/tozer0-google-play-services_lib/assets"/></dataSet><dataSet config="debug"><source path="/home/paul/Documents/Projets/tozer0-app/platforms/android/cordova-plugin-extras-google-play-services/tozer0-google-play-services_lib/src/debug/assets"/></dataSet></merger>

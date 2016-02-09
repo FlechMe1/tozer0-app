@@ -14,6 +14,12 @@
     "dependent_plugins": {
         "cordova-plugin-extension": {
             "PACKAGE_NAME": "com.phonegap.tozer0"
+        },
+        "cordova-plugin-extras-google-play-services": {
+            "PACKAGE_NAME": "com.phonegap.tozer0"
+        },
+        "cordova-plugin-extras-android-support-library-v4": {
+            "PACKAGE_NAME": "com.phonegap.tozer0"
         }
     }
 }

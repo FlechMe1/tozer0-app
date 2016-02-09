@@ -14,5 +14,31 @@
         },
         "is_top_level": false,
         "variables": {}
+    },
+    "cordova-plugin-game": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-game"
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "596840834279"
+        }
+    },
+    "cordova-plugin-extras-google-play-services": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-extras-google-play-services"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-extras-android-support-library-v4": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-extras-android-support-library-v4"
+        },
+        "is_top_level": false,
+        "variables": {}
     }
 }

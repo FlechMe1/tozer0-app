@@ -11,6 +11,10 @@
                         {
                             "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize\" android:name=\"com.google.android.gms.ads.AdActivity\" android:theme=\"@android:style/Theme.Translucent\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<meta-data android:name=\"com.google.android.gms.version\" android:value=\"@integer/google_play_services_version\" />",
+                            "count": 1
                         }
                     ],
                     "/*": [
@@ -42,6 +46,12 @@
             "PACKAGE_NAME": "com.phonegap.tozer0"
         },
         "cordova-plugin-admobpro": {
+            "PACKAGE_NAME": "com.phonegap.tozer0"
+        },
+        "cordova-plugin-extras-google-play-services": {
+            "PACKAGE_NAME": "com.phonegap.tozer0"
+        },
+        "cordova-plugin-extras-android-support-library-v4": {
             "PACKAGE_NAME": "com.phonegap.tozer0"
         }
     },
